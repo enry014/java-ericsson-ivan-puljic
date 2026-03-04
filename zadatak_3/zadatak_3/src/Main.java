@@ -1,14 +1,33 @@
+import java.util.Collections;
+import java.util.List;
+import java.util.ArrayList;
+
+
 public class Main {
     public static void main(String[] args){
 
-        Trokut trokut = new Trokut("trokut_1",2.4, 1,2);
-        Pravokutnik pravokutnik = new Pravokutnik("pravokutnik",2,5);
-        Krug krug = new Krug("mali_krug",3);
+        // List<GeometrijskiLik> likovi = new ArrayList<>();
 
+        // likovi.add(new Krug("Krug1", 5));
+        // likovi.add(new Pravokutnik("Prav1", 4, 6));
+        // likovi.add(new Trokut("Trok1", 3, 4, 5));
 
-        System.out.println(trokut.getNaziv());
-        System.out.println(pravokutnik.getNaziv());
-        System.out.println(krug.getNaziv());
+        // Collections.sort(likovi);
+
+        Ucilica ucilica = new Ucilica();
+
+        ucilica.dodaj(new Krug("Krug2", 6));
+        ucilica.dodaj(new Krug("Krug3",2));
+        ucilica.dodaj(new Pravokutnik ("Prav2", 5,9));
+        ucilica.dodaj(new Trokut("Trok2", 2,5,6));
+
+        ucilica.ispisiSve();
+        ucilica.sortirajPoPovrsini();
+
+        System.out.println("Sortirano po površini: \n");
+        ucilica.ispisiSve();
+
+        // System.out.println(likovi.toString());
 
 
     }

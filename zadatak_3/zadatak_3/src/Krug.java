@@ -13,12 +13,12 @@ public class Krug extends GeometrijskiLik{
     }
 
     @Override
-    double povrsina() {
-        return 0;
+    public double povrsina() {
+        return Math.PI * r * r;
     }
 
     @Override
     double opseg() {
-        return 0;
+        return 2 * Math.PI * r;
     }
 }

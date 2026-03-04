@@ -20,12 +20,12 @@ public class Pravokutnik extends GeometrijskiLik{
 
     @Override
     double povrsina(){
-        return 0;
+        return a * b;
     }
 
     @Override
     double opseg(){
-        return 0;
+        return 2 * (a + b);
     }
 
 }

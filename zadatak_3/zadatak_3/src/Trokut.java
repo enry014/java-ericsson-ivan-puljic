@@ -1,4 +1,3 @@
-import static java.lang.Math.sqrt;
 
 public class Trokut extends GeometrijskiLik{
 
@@ -28,12 +27,15 @@ public class Trokut extends GeometrijskiLik{
 
     @Override
     double povrsina(){
-        return 0;
+        double s = (a + b + c) / 2.0;
+        return Math.sqrt(s * (s - a) * (s - b) * (s - c));
     }
 
     @Override
     double opseg(){
-        return 0;
+        return a + b + c;
     }
+
+
 
 }
