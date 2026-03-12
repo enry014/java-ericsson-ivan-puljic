@@ -1,10 +1,13 @@
 public class Krug extends GeometrijskiLik{
 
-    String naziv;
+
     double r;
 
     Krug(String naziv, double r){
         super(naziv);
+        if (r <= 0) {
+            throw new IllegalArgumentException("Radijus mora biti > 0");
+        }
         this.r = r;
     }
 
@@ -18,7 +21,9 @@ public class Krug extends GeometrijskiLik{
     }
 
     @Override
-    double opseg() {
+    public double opseg() {
         return 2 * Math.PI * r;
     }
+
+
 }

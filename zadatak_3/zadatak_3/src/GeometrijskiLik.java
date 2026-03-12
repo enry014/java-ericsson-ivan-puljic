@@ -1,6 +1,6 @@
 public abstract class GeometrijskiLik implements Comparable<GeometrijskiLik> {
 
-    protected String naziv;
+    private final String naziv;
 
     public GeometrijskiLik(String naziv) {
         this.naziv = naziv;
@@ -10,8 +10,8 @@ public abstract class GeometrijskiLik implements Comparable<GeometrijskiLik> {
         return naziv;
     }
 
-    abstract double povrsina();
-    abstract double opseg();
+    public abstract double povrsina();
+    public abstract double opseg();
 
     @Override
     public String toString() {

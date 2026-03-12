@@ -1,11 +1,16 @@
 public class Pravokutnik extends GeometrijskiLik{
 
-    String naziv;
+
     double a;
     double b;
 
     Pravokutnik(String naziv, double a, double b){
         super(naziv);
+
+        if (a <= 0 || b <= 0) {
+            throw new IllegalArgumentException("Stranice moraju biti > 0");
+        }
+
         this.a = a;
         this.b = b;
     }
@@ -19,12 +24,12 @@ public class Pravokutnik extends GeometrijskiLik{
     }
 
     @Override
-    double povrsina(){
+    public double povrsina(){
         return a * b;
     }
 
     @Override
-    double opseg(){
+    public double opseg(){
         return 2 * (a + b);
     }
 
