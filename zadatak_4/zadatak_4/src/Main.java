@@ -5,46 +5,58 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
         // original
         System.out.println("Unesite putanju do originalne datoteke:");
-        String file_path_original = scanner.nextLine();
-        File original = new File(file_path_original);
+        String filePathOriginal = scanner.nextLine();
+        File original = new File(filePathOriginal);
 
         // provjera postoji li izvorna datoteka i imamo li prava
-        if(!original.exists()) {
+        if (!original.exists()) {
             System.out.println("Izvorna datoteka ne postoji!");
             scanner.close();
             return;
         }
-        if(!original.canRead()) {
-            System.out.println("Nemate prava za čitanje ili pisanje izvorne datoteke!");
+        if (!original.canRead()) {
+            System.out.println("Nemate prava za čitanje!");
             scanner.close();
+            return;
+        }
+        if (original.exists() && !original.canWrite()) {
+            System.out.println("Nemate prava za pisanje!");
             return;
         }
 
 
         // kopija
-        System.out.println("Unesite putanju i naziv kopije:");
-        String file_path_copy = scanner.nextLine();
-        File file_copy = new File(file_path_copy);
+        String filePathCopy;
+        File fileCopy;
 
-        if(file_copy.exists()) {
-            System.out.println("Datoteka već postoji. Želite li prepisati (D/N)?");
-            String odgovor = scanner.nextLine();
-            if (!odgovor.equalsIgnoreCase("D")) {
-                System.out.println("Odaberite drugo ime datoteke.");
-                scanner.close();
-                return;
+        while (true) {
+            System.out.println("Unesite putanju i naziv kopije:");
+            filePathCopy = scanner.nextLine();
+            fileCopy = new File(filePathCopy);
+
+            if (fileCopy.exists()) {
+                System.out.println("Datoteka već postoji. Želite li prepisati (D/N)?");
+                String odgovor = scanner.nextLine();
+
+                if (odgovor.equalsIgnoreCase("D")) {
+                    break;
+                } else {
+                    System.out.println("Odaberite drugo ime datoteke.");
+                }
+            } else {
+                break;
             }
         }
 
         // kopiranje
-        try (FileInputStream fis = new FileInputStream(file_path_original);
-             FileOutputStream fos = new FileOutputStream(file_path_copy)) {
+        try (FileInputStream fis = new FileInputStream(filePathOriginal);
+             FileOutputStream fos = new FileOutputStream(filePathCopy)) {
 
             int byteRead;
             while ((byteRead = fis.read()) != -1) {
@@ -59,7 +71,7 @@ public class Main {
         }
 
         // provjera
-        if(file_copy.exists()) {
+        if (fileCopy.exists()) {
             System.out.println("Kopija datoteke je uspješno napravljena!");
         } else {
             System.out.println("Greška: Kopija datoteke nije kreirana!");
@@ -70,10 +82,10 @@ public class Main {
 
         // brisanje
         System.out.println("Želite li izbrisati kopiju datoteke (D/N)?");
-        String delete_file = scanner.nextLine();
-        if(delete_file.equalsIgnoreCase("D")) {
-            if(file_copy.exists()) {
-                if(file_copy.delete()) {
+        String deleteFile = scanner.nextLine();
+        if (deleteFile.equalsIgnoreCase("D")) {
+            if (fileCopy.exists()) {
+                if (fileCopy.delete()) {
                     System.out.println("Kopija je uspješno obrisana!");
                 } else {
                     System.out.println("Ne mogu obrisati datoteku!");
